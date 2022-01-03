@@ -78,3 +78,4 @@ place_order_button = driver.find_element_by_id("place_order").click()
 # # 10. Используя явное ожидание, проверьте что в Payment Method отображается текст "Check Payments"
 Check_Payments_text = WebDriverWait(driver, 10).until(
 EC.text_to_be_present_in_element((By.CSS_SELECTOR, "#payment > ul > li.wc_payment_method.payment_method_cheque > label"), "Check Payments"))
+driver.quit() # команда quit() – нужна для закрытия всех вкладок и завершения процесса webdriver
