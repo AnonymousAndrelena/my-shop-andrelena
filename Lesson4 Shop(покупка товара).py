@@ -66,11 +66,11 @@ billing_postcode = driver.find_element_by_id("billing_postcode").send_keys("1900
 # 7. Выберите способ оплаты "Check Payments"
 # • Перед выбором, проскролльте на 600 пикселей вниз и добавьте sleep
 #Проскроллили страницу вниз на 500 пикселей до видимости кнопке add to basket
-driver.execute_script("window.scrollBy(0, 600);") # эта команда проскроллит страницу на 600 пикселей вниз
-time.sleep(5)
-Check_Payments = driver.find_element_by_css_selector("[value='cheque']").click()
+#driver.execute_script("window.scrollBy(0, 600);") # эта команда проскроллит страницу на 600 пикселей вниз
+#time.sleep(5)
+#Check_Payments = driver.find_element_by_css_selector("[value='cheque']").click()
 # 8. Нажмите PLACE ORDER
-place_order_button = driver.find_element_by_id("place_order").click()
+#place_order_button = driver.find_element_by_id("place_order").click()
 # 9. Используя явное ожидание, проверьте что отображается надпись "Thank you. Your order has been received."
 
 
