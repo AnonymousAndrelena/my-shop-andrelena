@@ -55,8 +55,10 @@ billing_phone_field = driver.find_element_by_name("billing_phone").send_keys("+7
 driver.execute_script("window.scrollBy(0, 500);") # эта команда проскроллит страницу на 500 пикселей вниз
 # • Для заполнения country нужно: нажать на селектор - > ввести название в поле ввода - > нажать на вариант который отобразится ниже ввода
 # • Чтобы выбрать селектор нижний вариант после ввода, используйте кнопку нажмите на неё, затем на вариант в списке ниже
-selector_country = driver.find_element_by_css_selector("#s2id_billing_country > a > span.select2-arrow > b").click()
-search_field_country = driver.find_element_by_id("s2id_autogen1_search").send_keys("Samoa")
+# selector_country = driver.find_element_by_css_selector("#select2-chosen-1").click()
+# search_field_country = driver.find_element_by_id("s2id_autogen1_search").send_keys("Samoa")
+# chose_country = driver.find_element_by_id("s2id_autogen1_search").click()
+
 #select = Select(driver.find_element_by_xpath('/html/body/span')).select_by_value('WS')
 billing_address_1 = driver.find_element_by_id("billing_address_1").send_keys("Lenina")
 billing_city = driver.find_element_by_id("billing_city").send_keys("Апиа")
@@ -66,16 +68,19 @@ billing_postcode = driver.find_element_by_id("billing_postcode").send_keys("1900
 # 7. Выберите способ оплаты "Check Payments"
 # • Перед выбором, проскролльте на 600 пикселей вниз и добавьте sleep
 #Проскроллили страницу вниз на 500 пикселей до видимости кнопке add to basket
-#driver.execute_script("window.scrollBy(0, 600);") # эта команда проскроллит страницу на 600 пикселей вниз
-#time.sleep(5)
-#Check_Payments = driver.find_element_by_css_selector("[value='cheque']").click()
+driver.execute_script("window.scrollBy(0, 600);") # эта команда проскроллит страницу на 600 пикселей вниз
+time.sleep(5)
+Check_Payments = driver.find_element_by_css_selector("[value='cheque']").click()
 # 8. Нажмите PLACE ORDER
-#place_order_button = driver.find_element_by_id("place_order").click()
+#Проскроллили страницу вниз на 300 пикселей до видимости кнопке add to basket
+driver.execute_script("window.scrollBy(0, 300);") # эта команда проскроллит страницу на 300 пикселей вниз
+time.sleep(5)
+place_order_button = driver.find_element_by_id("place_order").click()
 # 9. Используя явное ожидание, проверьте что отображается надпись "Thank you. Your order has been received."
+Thank_you_text = WebDriverWait(driver, 10).until(
+EC.text_to_be_present_in_element((By.CSS_SELECTOR, "#page-35 > div > div.woocommerce > p.woocommerce-thankyou-order-received"), "Thank you. Your order has been received."))
 
-
-
-# # 10. Используя явное ожидание, проверьте что в Payment Method отображается текст "Check Payments"
+# 10. Используя явное ожидание, проверьте что в Payment Method отображается текст "Check Payments"
 Check_Payments_text = WebDriverWait(driver, 10).until(
-EC.text_to_be_present_in_element((By.CSS_SELECTOR, "#payment > ul > li.wc_payment_method.payment_method_cheque > label"), "Check Payments"))
+EC.text_to_be_present_in_element((By.CSS_SELECTOR, "#page-35 > div > div.woocommerce > ul > li.method > strong"), "Check Payments"))
 driver.quit() # команда quit() – нужна для закрытия всех вкладок и завершения процесса webdriver
